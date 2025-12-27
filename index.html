@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayur Builder | Premium Construction & Development</title>
+    <!-- Load Font Awesome for social media icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Use Inter font for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for Theme */
+        :root {
+            --primary-brown: #8B4513; /* Saddle Brown - for accents, buttons */
+            --secondary-brown: #A0522D; /* Sienna - for text, headers */
+            --background-white: #FAFAFA; /* Light off-white */
+            --text-dark: #333333;
+            --font-main: 'Poppins', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease-in-out; /* Smooth transitions everywhere */
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: var(--background-white);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-brown);
+            color: var(--background-white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Button Active/Click Effect */
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--secondary-brown);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-brown);
+            border-radius: 5px;
+        }
+
+        /* 1. Header (Navigation & Liquid Glass Effect) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1px 0;
+            /* Liquid Glass Effect */
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--secondary-brown);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo img {
+            height: 100px; /* Adjust height based on actual logo size */
+            margin-right: 10px;
+            /* Note: In a real environment, you would use a clean SVG of the logo here */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-brown);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Mobile Menu Setup (Hidden by default) */
+        #menu-toggle {
+            display: none;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--secondary-brown);
+        }
+
+        /* 2. Home Section (Hero) */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(250, 250, 250, 0.7), rgba(250, 250, 250, 0.5)), url('Construction image.jpg') center/cover no-repeat;
+            background-attachment: fixed; /* Parallax effect for premium feel */
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            color: var(--secondary-brown);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+        }
+        /* 3. About us(Card Layout) */
+        #about {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(250, 250, 250, 0.7), rgba(250, 250, 250, 0.5)), url('builder img.jpg') center/cover no-repeat;
+            background-attachment: fixed; /* Parallax effect for premium feel */
+            text-align: center;
+        }
+
+        /* 4. Services and Projects Sections (Card Layout) */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: var(--background-white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            cursor: pointer; /* Indicate interactivity */
+            /* Liquid Glass on Cards */
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.05), rgba(160, 82, 45, 0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Float/Shadow Animation for Cards */
+        .card:hover {
+            transform: translateY(-5px); /* Lifts the card */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Deeper shadow when lifted */
+        }
+        
+        .card:active {
+            transform: translateY(-1px); /* Pushes back slightly when clicked */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-family: var(--font-heading);
+            color: var(--secondary-brown);
+            margin-bottom: 10px;
+        }
+        
+        /* 5. Testimonials Section (Slider/Carousel effect via CSS/flex) */
+        #testimonials {
+            background-color: var(--background-white);
+            overflow: hidden;
+        }
+        
+        .testimonial-wrapper {
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background-color: var(--primary-brown);
+            color: var(--background-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .testimonial-card blockquote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card cite {
+            display: block;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 1rem;
+        }
+
+        /* 5. Contact Section Styles */
+        .contact-info-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            flex: 1;
+            max-width: 300px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            cursor: pointer; /* Indicate interactivity */
+            /* Liquid Glass on Contact Items */
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        /* Float/Shadow Animation for Contact Items */
+        .contact-item:hover {
+            transform: translateY(-3px); /* Gentle lift */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .contact-item:active {
+            transform: translateY(-1px); /* Sink slightly when pressed */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .contact-item i {
+            font-size: 2.2rem;
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+        }
+        
+        .contact-item h4 {
+            font-family: var(--font-heading);
+            color: var(--secondary-brown);
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .contact-social-icons a {
+            color: var(--secondary-brown);
+            font-size: 1.8rem;
+            margin: 0 10px;
+            opacity: 0.8;
+        }
+
+        .contact-social-icons a:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            color: var(--primary-brown);
+        }
+        
+        /* 6. Site Footer Styles */
+        footer {
+            background-color: var(--secondary-brown);
+            color: var(--background-white);
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =======================================
+           Responsive Design (Mobile First) 
+           ======================================= */
+        
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Below the header */
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95); /* Near-solid background for visibility */
+                backdrop-filter: blur(10px);
+                padding: 10px 0;
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links li {
+                text-align: center;
+                margin: 5px 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px 20px;
+                color: var(--secondary-brown);
+                font-size: 1.1rem;
+            }
+            
+            .menu-icon {
+                display: block;
+            }
+            
+            /* Show navigation when checkbox is checked */
+            #menu-toggle:checked ~ .nav-links {
+                display: flex;
+            }
+
+            /* Adjustments for smaller screens */
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .section-padding {
+                padding: 60px 0;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .contact-item {
+                min-width: 100%;
+            }
+        }
+        
+        /* Tablet/Desktop Adjustments */
+        @media (min-width: 769px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation Bar -->
+    <header>
+        <div class="container navbar">
+            <a href="#home" class="logo">
+                <!-- Placeholder for Mayur Builder Logo -->
+                <img src="MB logo.PNG">
+                MAYUR BUILDER
+            </a>
+            
+            <!-- Hidden Checkbox for Mobile Menu Toggle -->
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 1. HOME Section (Hero) -->
+    <section id="home">
+        <div class="hero-content">
+            
+            <h1>Building Legacies, One Structure at a Time.</h1>
+            <p>Exceptional quality, timely delivery, and a foundation built on trust. Mayur Builder transforms visions into tangible, enduring realities.</p>
+            <a href="#services" class="btn">View Our Services</a>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT US Section -->
+    <section id="about" class="section-padding text-center">
+        <div class="container">
+            <h2>Our Foundation</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    Building Excellence Since 2014. Mayur Builder is a recognized leader in premium construction, creating exceptional residential and commercial environments that stand the test of time. Our approach blends innovative sustainable practices with a mastery of traditional craftsmanship.
+                </p>
+                <p>
+                    We pride ourselves on a client-first philosophy rooted in transparency. Our dedicated team manages every detail of the development process with an unwavering focus on safety and quality. We believe that the most iconic buildings are the result of collaborative vision and professional integrity.
+                </p>
+            </div>
+            <div class="card-grid" style="margin-top: 50px;">
+                <div class="card" tabindex="0">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Client Trust</h3>
+                    <p>Building long-lasting relationships through honest communication and ethical practices.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <i class="fas fa-hammer"></i>
+                    <h3>Quality Craftsmanship</h3>
+                    <p>Utilizing the best materials and proven techniques for structural integrity and aesthetic perfection.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Innovation</h3>
+                    <p>Integrating modern architectural design and smart technologies into every project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SERVICES Section -->
+    <section id="services" class="section-padding" style="background-color: #F0F0F0;">
+        <div class="container text-center">
+            <h2>What We Offer</h2>
+            <div class="card-grid">
+                <div class="card" tabindex="0">
+                    <i class="fas fa-city"></i>
+                    <h3>Commercial Construction</h3>
+                    <p>Development of large-scale office spaces, retail complexes, and hospitality venues.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <i class="fas fa-home"></i>
+                    <h3>Residential Development</h3>
+                    <p>Bespoke custom homes, luxury apartments, and sustainable housing communities.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <i class="fas fa-industry"></i>
+                    <h3>Industrial & Warehousing</h3>
+                    <p>High-efficiency industrial parks, manufacturing facilities, and smart warehouse solutions.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <i class="fas fa-pencil-ruler"></i>
+                    <h3>Design & Build</h3>
+                    <p>Integrated services covering architectural design, planning, and end-to-end construction management.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <i class="fas fa-wrench"></i>
+                    <h3>Renovation & Remodeling</h3>
+                    <p>Expert revitalization and modernization of existing structures to current standards.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <i class="fas fa-tree"></i>
+                    <h3>Sustainable Building</h3>
+                    <p>Focus on eco-friendly materials and energy-efficient designs to minimize environmental impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PROJECTS Section -->
+    <section id="projects" class="section-padding text-center">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="card-grid">
+                <div class="card" tabindex="0">
+                    <img src="tower.jpg" alt="Commercial Project" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>The Ascent Tower (Commercial)</h3>
+                    <p style="color: var(--primary-brown);">Completed: Q4 2023</p>
+                    <p>A 25-story LEED-certified commercial hub redefining the city skyline.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <img src="Villa.jpg" alt="Residential Project" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>Serenity Enclave (Residential)</h3>
+                    <p style="color: var(--primary-brown);">Completed: Q2 2024</p>
+                    <p>Exclusive community of 50 luxury villas featuring smart home technology.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <img src="Industrial Park.jpg" alt="Industrial Project" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>Nexus Logistics Park (Industrial)</h3>
+                    <p style="color: var(--primary-brown);">Completed: Q1 2023</p>
+                    <p>State-of-the-art logistics facility covering over 500,000 sq ft.</p>
+                </div>
+            </div>
+            <a href="#contact" class="btn" style="margin-top: 40px;">Request A Consultation</a>
+        </div>
+    </section>
+    
+    <!-- 5. TESTIMONIALS Section -->
+    <section id="testimonials" class="section-padding text-center">
+        <div class="container">
+            <h2>Client Voices</h2>
+            <div class="testimonial-wrapper">
+                <!-- Single Card for simplicity, creating a premium highlight -->
+                <div class="testimonial-card">
+                    <blockquote>
+                        "Mayur Builder exceeded all expectations on our new corporate headquarters. The attention to detail, adherence to the timeline, and the quality of finish were truly world-class. A highly professional and reliable partner."
+                    </blockquote>
+                    <cite>— Mr. Rakesh Sharma, CEO, Tech Solutions Inc.</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CONTACT Section -->
+    <section id="contact" class="section-padding text-center">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p style="max-width: 600px; margin: 0 auto 50px; font-size: 1.1rem;">
+                Ready to start your next project? We are here to answer all your questions and discuss how Mayur Builder can bring your vision to life.
+            </p>
+            <div class="contact-info-grid">
+                <div class="contact-item" tabindex="0">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Phone Support</h4>
+                    <p>+91 9876 543 210</p>
+                    <p class="small-text">Mon - Fri, 9:00 AM - 6:00 PM</p>
+                </div>
+                <div class="contact-item" tabindex="0">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Us</h4>
+                    <p>info@mayurbuilder.in</p>
+                    <p class="small-text">Expect a response within 24 hours.</p>
+                </div>
+                <div class="contact-item" tabindex="0">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Corporate Office</h4>
+                    <p>Building 42, Business Park</p>
+                    <p class="small-text">City Name, State, 10001</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px;">
+                 <h3>Connect With Us</h3>
+                 <!-- Social Media Icons (Moved here) -->
+                 <div class="contact-social-icons" style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+                    <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SITE FOOTER -->
+    <footer id="site-footer">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>MAYUR BUILDER</h3>
+                <p>Building the future, today.</p>
+            </div>
+            
+            <div class="footer-links">
+                <p style="font-weight: 600;">Quick Links:</p>
+                <p>
+                    <a href="#about" style="color: var(--background-white); text-decoration: none;">About</a> | 
+                    <a href="#services" style="color: var(--background-white); text-decoration: none;">Services</a> | 
+                    <a href="#projects" style="color: var(--background-white); text-decoration: none;">Projects</a> |
+                    <a href="#contact" style="color: var(--background-white); text-decoration: none;">Contact</a>
+                </p>
+            </div>
+            <!-- Social Icons were moved to the #contact section -->
+        </div>
+        <div class="copyright">
+            &copy; 2024 Mayur Builder. All Rights Reserved.
+        </div>
+    </footer>
+    
+    <!-- Script to dynamically load Font Awesome icons -->
+    <script>
+        // Note: This script is only for loading the external Font Awesome library for the icons.
+        // All core functionality (responsiveness, styling, glass effect) is handled by CSS.
+        // It is recommended to use the kit.fontawesome.com link in a real project.
+    </script>
+</body>
+</html>
